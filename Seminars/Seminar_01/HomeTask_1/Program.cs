@@ -16,4 +16,5 @@ else
 {
     max = number2;
     min = number1;
-}Console.WriteLine($"Число {max} больше числа {min}.");
+}
+Console.WriteLine($"Число {max} больше числа {min}.");
