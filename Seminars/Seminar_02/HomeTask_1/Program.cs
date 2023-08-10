@@ -9,14 +9,28 @@
 // System.Console.WriteLine($"{randNumb} - > {secondDig}");
 
 
-System.Console.WriteLine("Введите трёхзначное число"); // С числом введённым пользователем
-int number = int.Parse(Console.ReadLine()!);
-int secondDig = 0;
-
-if (number < 100) System.Console.WriteLine("Ошибка, не выполнены условия задачи");
-else if (number > 999) System.Console.WriteLine("Ошибка, не выполнены условия задачи");
-else 
+int EnterNum (string message)
 {
-    secondDig = number / 10 % 10;
-    System.Console.WriteLine($"{number} - > {secondDig}");
+    System.Console.WriteLine(message);
+    int result = int.Parse(Console.ReadLine()!);
+    return result;
 }
+
+// if (number < 100) System.Console.WriteLine("Ошибка, не выполнены условия задачи");
+// else if (number > 999) System.Console.WriteLine("Ошибка, не выполнены условия задачи");
+// else 
+// {
+//     secondDig = number / 10 % 10;
+//     System.Console.WriteLine($"{number} - > {secondDig}");
+// }
+
+int number = EnterNum("Введите трёхзначное число");
+
+if (number < 100 || number > 999) 
+{
+   System.Console.WriteLine("Ошибка, не выполнены условия задачи");
+   return;
+}
+
+int secondDig = number / 10 % 10;
+System.Console.WriteLine($"{number} - > {secondDig}");
