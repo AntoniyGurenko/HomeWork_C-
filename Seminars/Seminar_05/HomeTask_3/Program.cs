@@ -10,85 +10,55 @@ void FillArray (double[] collection, int minV, int maxV)
 {
     Random rnd = new Random();
     for (int i = 0; i < collection.Length; i++)
-        collection[i] = Math.Round(rnd.NextDouble() + rnd.Next(minV, maxV + 1), 2);
+        collection[i] = Math.Round(rnd.NextDouble() + rnd.Next(minV, maxV), 2);
 }
 
-void PrintArray (double[] col)
+string PrintArray (double[] col)
 {
-    Console.Write("[");
+    string res = "[";
     for (int i = 0; i < col.Length; i++)
-        Console.Write($"{col[i]}  ");
-    Console.Write("]");
+    {
+        if(i != col.Length - 1)
+            res += $"{col[i]}  ";
+        else
+        {
+            res += $"{col[i]}]";
+        }
+    }
+    return res;
 }
 
-double Max(double arg1, double arg2, double arg3)
+double FindMaxDigit(double[] arr)
 {
-    double result = arg1;
-    if (arg2 > result) result = arg2;
-    if (arg3 > result) result = arg3;
-    return result;
+    double res = arr[0];
+    for (int i = 0; i < arr.Length; i++)
+    {
+        if(arr[i] > res) res = arr[i];
+    }
+    return res;
 }
 
-double FindDiffMaxAndMinDig(double[] arr)
+double FindMinDigit(double[] arr)
 {
-    
-    // double diff = 0;
-    // double max = arr[0];
-    // double min = arr[0];
-    // double maxSubTotal;
-    // double minSubTotal;
-    // int i = 0;
+    double res = arr[0];
+    for (int i = 0; i < arr.Length; i++)
+    {
+        if(arr[i] < res) res = arr[i];
+    }
+    return res;
+}
 
-    // while (i < arr.Length)
-    // {
-    //     maxSubTotal = arr[i];
-    //     minSubTotal = arr[i];
-    //     if(arr[i + 1] > maxSubTotal) maxSubTotal = arr[i + 1];
-    //     if(arr[i + 2] > maxSubTotal) maxSubTotal = arr[i + 2];
-    //     if(arr[i + 1] < minSubTotal) minSubTotal = arr[i + 1];
-    //     if(arr[i + 2] < minSubTotal) minSubTotal = arr[i + 2];
-
-    //     if(maxSubTotal > max) max = maxSubTotal;
-    //     if(minSubTotal < min) min = minSubTotal;
-
-    //     if(i + 6 > arr.Length)
-    //     {
-    //         maxSubTotal = arr[i + 3];
-    //         minSubTotal = arr[i + 3];
-
-    //         // if(arr.Length - i == 4)
-    //         // {
-    //         //     if(maxSubTotal > max) max = maxSubTotal;
-    //         //     if(minSubTotal < min) min = minSubTotal;
-    //         // }
-    //         if(arr.Length - i == 5)
-    //         {
-    //             if(arr[i + 4] > maxSubTotal) maxSubTotal = arr[i + 4];
-    //             if(arr[i + 4] < minSubTotal) minSubTotal = arr[i + 4];
-    //         }
-    //         if(arr.Length - i == 6)
-    //         {
-    //             if(arr[i + 4] > maxSubTotal) maxSubTotal = arr[i + 4];
-    //             if(arr[i + 5] > maxSubTotal) maxSubTotal = arr[i + 5];
-    //             if(arr[i + 4] < minSubTotal) minSubTotal = arr[i + 4];
-    //             if(arr[i + 5] < minSubTotal) minSubTotal = arr[i + 5];
-    //         }
-
-    //         if(maxSubTotal > max) max = maxSubTotal;
-    //         if(minSubTotal < min) min = minSubTotal;
-    //     }
-
-    //     i += 3; 
-    // }
-
-    // diff = max - min;
-
+double FindDiffMaxAndMinDig(double theMax, double theMin)
+{
+    return Math.Round(theMax - theMin, 2);
 }
 
 
 double[] array = CreateArray(10);
-
 FillArray(array, 0, 100);
 
-PrintArray(array);
-// System.Console.WriteLine($" разница между большим{} и меньшим{} равна -> {FindDiffMaxAndMinDig(array)}");
+double max = FindMaxDigit(array);
+double min = FindMinDigit(array);
+
+
+System.Console.WriteLine($"{PrintArray(array)} разница между большим {max} и меньшим {min} равна -> {FindDiffMaxAndMinDig(max, min)}");
