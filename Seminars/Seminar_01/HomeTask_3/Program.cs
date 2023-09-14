@@ -5,20 +5,10 @@ Console.WriteLine("Введите число:");
 int number = int.Parse(Console.ReadLine()!);
 bool even = true;
 
-if (number % 2 == 0)
-{
-    even = true;
-}
-else
-{
+if (number % 2 != 0)
     even = false;
-}
 
 if (even == true)
-{
     Console.WriteLine($"Число {number} является чётным");
-}
 else
-{
     Console.WriteLine($"Число {number} является не чётным");
-}
